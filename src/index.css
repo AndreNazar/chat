@@ -5,9 +5,30 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #333339;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.loading{
+  position: absolute;
+  top: 30%;
+  left: 43%;
+  width: 10rem;
+  height: 10rem;
+  z-index: 999;
+}
+
+
+.subscribe{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: grid;
+  transform: rotate(-90deg) translate(50%, -100%);
+}
+.subscribe button{
+  color: #fff;
 }

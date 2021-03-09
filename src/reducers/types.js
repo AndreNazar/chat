@@ -1,0 +1,3 @@
+export const ADD_CITIES = "ADD_CITIES"
+export const ADD_CURRENT_CITY = "ADD_CURRENT_CITY"
+export const LOAD_CHANGE = "LOAD_CHANGE"
