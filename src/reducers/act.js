@@ -1,46 +1,23 @@
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-import {ADD_CITIES, ADD_CURRENT_CITY, LOAD_CHANGE} from './types'
+import {ADD_PLAYER, DELETE_PLAYER} from './types'
 
-export const addParam = (response) => {
+export const addParamHelper = (x, y, img, type) => {
     return{
-        type: ADD_CITIES,
-        payload: response
-    }
-}
-export const addCurrentCity = (response) => {
-    return{
-        type: ADD_CURRENT_CITY,
-        payload: response
-    }
-}
-export const loadChange = (response) => {
-    return{
-        type: LOAD_CHANGE,
-        payload: response
+        type,
+        payload: {x, y, img}
     }
 }
 
-export const getCurrentCity = async(city, dispatch) => {
-    const response = []
-    dispatch(loadChange(true))
-    city==="486148"
-    ?response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=красный+завод&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    :response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${city}&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
+export const addParam = async(x, y, img, players, dispatch) => {
+
+    for(let i = 0; i < players.length; i++){
+        if(players[i][0] === x & players[i][1] === y){
+            dispatch(addParamHelper(x, y, img, DELETE_PLAYER))
+            return
+        }
+    }
     
-    dispatch(loadChange(false))
-    dispatch(addCurrentCity(response))
+    dispatch(addParamHelper(x, y, img, ADD_PLAYER))
 }
 
-export const getCities = async(dispatch) => {
-    const response = []
-    dispatch(loadChange(true))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=красный+завод&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=achinsk&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=krasnoyarsk&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=moscow&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=saint+petersburg&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    response.push(await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=kazan&units=metric&appid=f534cacaa34a99ca60d68ac2b5db7032`))
-    dispatch(loadChange(false))
-    dispatch(addParam(response))
-}

@@ -1,22 +1,16 @@
-import {ADD_CITIES, ADD_CURRENT_CITY, LOAD_CHANGE} from './types'
+import {ADD_PLAYER, DELETE_PLAYER} from './types'
 
 const initialState = {
-    cities: [],
-    current_city: [],
-    on_load: false
+    players: []
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CITIES:
-            return {...state, cities: action.payload, current_city: []}
+        case ADD_PLAYER:
+            return {players: [...state.players, [action.payload.x, action.payload.y,  action.payload.img]]}
             break;
-        case ADD_CURRENT_CITY:
-            return {...state, current_city: action.payload, cities: []}
+        case DELETE_PLAYER:
+            return {players: [...state.players.filter(p => !(action.payload.x === p[0] && action.payload.y === p[1]))]}
             break;
-        case LOAD_CHANGE:
-            return {...state, on_load: action.payload}
-            break;
-
         default:
             return state
             break;

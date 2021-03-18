@@ -1,45 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import Blocks from './components/Blocks'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import BlockPage from './components/BlockPage'
-import { addParam, getCities } from './reducers/act'
+import { useSelector } from 'react-redux';
+import Block from './components/Block'
 
 
 const App = () => {
-    const app = useSelector(state => state.app)
+    
+    const active = useSelector(state => state.app.players);
 
-    function notifGet(){
-        var notification = new Notification("Погода в Ачинске на сегодня",{
-            tag: "ache-mail",
-            body: "24 градуса",
-            icon: "https://www.meteoservice.ru/img/weather_icons/material/svg/clouds_light.svg?v=2"
-        })
-    }
-
-    function notifSet(){
-        if(!("Notification" in window))alert("Ваш браузер не поддерживает уведомления")
-        else if(Notification.permission === 'granted') setInterval(notifGet, 60000)
-        else if(Notification.permission !== 'denied'){
-            Notification.requestPermission(function(permission){
-                if(!('permission' in Notification)) Notification.permission = permission
-                if(!('permission' in Notification)) Notification.permission = permission
-            })
+    function getColumn (y) {
+        let k = 0;
+        let result = [];
+        for(let j = 0; j<30; j++){
+            k++
+            result.push(<Block key={k} x={j} y={y} active={active} />)
         }
+        return result
+    }
+    function getRows () {
+        let result = [];
+        let k = 0;
+        for(let i = 0; i<16; i++){
+            k++
+            result.push(<div key={k} style={{display: 'flex', justifyItems: 'center'}}>{getColumn(i)}</div>)
+        }
+        return result
     }
 
     return (
-        <BrowserRouter>
-            <div className="container mt-5">
-                <Switch>
-                    <Route path="/" component={Blocks} exact/>
-                    <Route path="/:link" component={BlockPage}/>
-                    <Redirect to="/"/>
-                </Switch>
-                <div className="subscribe"><button onClick={() => notifSet()} className={"btn btn-info"}>Подписаться</button></div>
-            </div>
-        </BrowserRouter>
+        <div style={{display: 'grid'}} className="field">{getRows()}</div>
     )
 }
 
