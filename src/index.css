@@ -8,6 +8,9 @@ body {
   background: #222633;
   color: #abc;
 }
+body, html{
+  height: 100vh;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
