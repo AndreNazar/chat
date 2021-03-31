@@ -19,7 +19,7 @@ code {
   position: -webkit-sticky !important;
   box-sizing: border-box;
   transform: translateZ(0);
-  padding: 3rem 0 2rem 0;
+  padding: 2rem 0 2rem 0;
 }
 .header{
   display: flex;
