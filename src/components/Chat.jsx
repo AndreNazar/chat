@@ -13,10 +13,12 @@ const Chat = ({act_settings, setActSetting, setting_open}) => {
     const messages = useSelector(state => state.app.messages);
     let [send_count, setSendCount] = useState(1);
     const [loadanim, setLoadanim] = useState(false);
+    const [focus, setFocus] = useState(true)
     
     const sendMessage = (e) => {
         e.preventDefault()
         setSendCount(send_count + 1)
+        setFocus(true)
 
         if(send_count <= 2){ // ANTIFLUD
             if(message.trim() !== ""){
@@ -46,7 +48,7 @@ const Chat = ({act_settings, setActSetting, setting_open}) => {
             <Conversation loadanim={loadanim}/>
             {(messages.length===0)&&<div className={styles.loading}>Loading...</div>}
             <form className={styles.chat_form} onSubmit={(e) => sendMessage(e)}>
-                <input value={message} placeholder={"Введите ваше сообщение..."} autoFocus onChange={(e) => messageHandler(e)}/>
+                <input value={message} placeholder={"Введите ваше сообщение..."} autoFocus={focus} onChange={(e) => messageHandler(e)}/>
                 <button type='submit'><img src={send} alt=""/></button>
             </form>
         </div>
