@@ -4,9 +4,9 @@ import './index.css';
 import { applyMiddleware, compose, createStore } from 'redux';
 import {Provider} from 'react-redux'
 import App from './App';
-import allReducers from './reducers';
 import thunk from 'redux-thunk'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import allReducers from './reducers';
 
 const store = createStore(allReducers, compose(
   applyMiddleware(

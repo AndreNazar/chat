@@ -1,19 +1,27 @@
-import {ADD_PLAYER, DELETE_PLAYER} from './types'
+import {ADD_MESSAGE, CREATE_MESSAGE, SWITCH_HIGHTLIGHT, UPDATE_NAME} from './types'
 
 const initialState = {
-    players: []
+    messages: [],
+    currentUser: {id: Date.now(), name: 'noname', color: '#345444'},
+    highlighting: false
 }
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_PLAYER:
-            return {players: [...state.players, [action.payload.x, action.payload.y,  action.payload.img]]}
-            break;
-        case DELETE_PLAYER:
-            return {players: [...state.players.filter(p => !(action.payload.x === p[0] && action.payload.y === p[1]))]}
-            break;
-        default:
-            return state
-            break;
+        case ADD_MESSAGE:
+            return {...state, messages: [...state.messages]}
+        case CREATE_MESSAGE:
+            return {...state, messages: action.payload.messages}
+        case UPDATE_NAME:
+            return {...state, currentUser: {
+                id: action.payload.id, 
+                name: action.payload.name, 
+                color: action.payload.color
+            }
+        }
+        case SWITCH_HIGHTLIGHT:
+            return {...state, highlighting: action.payload.val}
+            default:
+                return state
     }
 }
 export default rootReducer

@@ -1,3 +1,6 @@
-export const ADD_PLAYER = "ADD_PLAYER"
-export const DELETE_PLAYER = "DELETE_PLAYER"
+export const ADD_MESSAGE = "ADD_MESSAGE"
+export const UPDATE_NAME = "UPDATE_NAME"
+export const UPDATE_COLOR = "UPDATE_COLOR"
+export const SWITCH_HIGHTLIGHT = "SWITCH_HIGHTLIGHT"
+export const CREATE_MESSAGE = "CREATE_MESSAGE"
 

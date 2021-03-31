@@ -5,9 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./textura.jpg');
-  background-repeat: no-repeat;
-  background-size: 1500px 800px;
+  background: #222633;
+  color: #abc;
 }
 
 code {
@@ -16,6 +15,35 @@ code {
 }
 
 .field{
-  background: #7b89;
-  width: 1500px;
+  text-align: center;
+  position: -webkit-sticky !important;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  padding: 3rem 0 2rem 0;
 }
+.header{
+  display: flex;
+  position: fixed;
+  top: 0.5rem;
+  width: 100%;
+  left: 50%;
+  max-width: inherit;
+  box-sizing: border-box;
+  transform: translateX(-50%);
+}
+.header h1{
+  flex: 1;
+  margin-left: 40px;
+}
+.fire_img{
+  width: 40px;
+  cursor: default !important;
+}
+
+.header img{
+  transition: .2s;
+  cursor: pointer;
+  z-index: 2;
+}
+.header img.active{transform: rotate(-60deg)}
+.header img.disable{transform: rotate(0deg)}
